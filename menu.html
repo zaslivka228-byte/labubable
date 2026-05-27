@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LABUBABLE MATCHA — Меню</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="menu.css" />
+</head>
+<body>
+<header class="header">
+  <div class="logo"><a href="index.html"><img src="img/logo.png" alt="LABUBABLE MATCHA"></a></div>
+  <nav>
+    <a href="index.html#contacts">контакты</a>
+    <a href="index.html#about">о нас</a>
+    <a href="reviews.html">отзывы</a>
+    <a href="menu.html">меню</a>
+  </nav>
+  <div class="header-placeholder">
+    <a href="#" class="icon-btn"><img src="img/iconinst.svg" alt="" class="icon-default"><img src="img/iconinsthover.svg" alt="" class="icon-hover"></a>
+    <a href="#" class="icon-btn"><img src="img/icontg.svg" alt="" class="icon-default"><img src="img/icontghover.svg" alt="" class="icon-hover"></a>
+  </div>
+</header>
+
+<section class="menu-page">
+  <div class="menu-tabs">
+    <a href="#drinks" class="active">Напитки</a>
+    <a href="#desserts">Десерты</a>
+  </div>
+
+  <div class="menu-header">
+    <img src="img/drink.svg" alt="" class="about-icon">
+    <h1>Напитки</h1>
+  </div>
+
+  <div id="drinks" class="menu-grid"></div>
+
+  <div id="desserts" class="menu-section">
+    <h2><img src="img/deserts.svg" alt="" class="about-icon">Десерты</h2>
+    <div class="menu-grid"></div>
+  </div>
+
+  <div class="menu-section">
+    <h2><img src="img/calc.svg" alt="" class="about-icon">Рассчитать калорийность</h2>
+    <div class="calorie-slider-wrapper">
+      <button class="slider-nav prev" type="button">&#8249;</button>
+      <div class="calorie-slider" id="calorie-slider"></div>
+      <button class="slider-nav next" type="button">&#8250;</button>
+    </div>
+    <div class="calorie-box">
+      <div class="summary">
+        <div class="summary-card">
+          <div class="label">Энергетическая ценность вашего меню</div>
+          <div class="value" id="total-calories">0</div>
+          <div class="label">ккал</div>
+          <button type="button" class="clear-all-btn" id="clearAllBtn">
+            <span ><img src="img/del.svg" alt=""></span>
+            <span class="clear-all-text">удалить все блюда</span>
+          </button>
+        </div>
+        <div class="summary-card">
+          <div class="label">Ваша суточная норма</div>
+          <div class="value" id="daily-calories">—</div>
+          <div class="label">ккал</div>
+          <button type="button" class="daily-settings-btn" id="dailySettingsBtn">
+            <span ><img src="img/inf.svg" alt=""></span>
+            <span class="clear-all-text">узнать мою норму</span>
+          </button>
+        </div>
+      </div>
+      <div class="menu-grid" id="selected-grid"></div>
+
+      <div class="modal-overlay" id="dailyModal">
+        <div class="daily-modal">
+          <button type="button" class="modal-close" id="modalCloseBtn">&times;</button>
+          <h3>Расчёт суточной нормы</h3>
+          <label class="modal-label">
+            Пол
+            <select id="genderSelect" class="modal-field">
+              <option value="female">Женский</option>
+              <option value="male">Мужской</option>
+            </select>
+          </label>
+          <label class="modal-label">
+            Возраст
+            <input type="number" id="ageInput" class="modal-field" min="1" max="120" placeholder="Введите возраст">
+          </label>
+          <button type="button" class="modal-apply-btn" id="applyDailyBtn">Применить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contacts" id="contacts">
+  <div class="contact-info">
+    <h2>контакты</h2>
+    <div>+7 (812) 309-20-30</div>
+    <div><a href="mailto:hello@labubable-matcha.ru">hello@labubable-matcha.ru</a></div>
+  </div>
+  <div class="contact-info">
+    <h2>адрес</h2>
+    <div>Санкт-Петербург</div>
+    <div>Набережная реки Фонтанки, 77</div>
+  </div>
+
+</section>
+
+<footer class="footer">© LABUBABLE MATCHA, 2025</footer>
+
+
+
+
+<script>
+const drinks = [
+  ['img/citrus-harmony.png','Цитрусовая гармония','Освежающий холодный матча, взбитый с соком мандарина юдзу и тоником. Лёгкая горчинка и яркий цитрусовый аромат.', '350₽', '85 ккал'],
+  ['img/bamboo-forest.png','Бамбуковый лес','Крем-матча на кокосовом молоке с сиропом из молодого бамбука и ноткой ванили. Напоминает нежный десерт в чашке.', '380₽', '180 ккал'],
+  ['img/matcha-tonic.png','Матча-тоник для иммунитета','Тёплый антиоксидантный микс: матча, облепиха, имбирь и мёд. Согревающий, полезный и бодрящий напиток.', '340₽', '120 ккал'],
+  ['img/pryanoye-matcha.png','Пряное какао-матча','Неожиданный дуэт: насыщенный какао, пряная матча, корица и кардамон. Подаётся с дымком от палочки корицы.', '370₽', '150 ккал'],
+  ['img/matcha-latte.png','Классический латте с матчей','Идеальный баланс: интенсивный вкус взбитой матчи и бархатистое молоко. Традиция в её самой гармоничной форме.', '320₽', '99 ккал'],
+  ['img/yoji-cloud.png','Облако ёдзи','Матча-латте с копчёным чаем ёдзича, увенчанный воздушным зефиром. Напиток с тёплым, древесным ароматом и лёгкой сладостью.', '370₽', '160 ккал'],
+  ['img/sakura-bubble.png','Сакура-бабл','Освежающий холодный матча, взбитый с лепестками сакуры и сливочным ванильным сиропом.', '390₽', '210 ккал'],
+  ['img/mint-gyokuro.png','Мятный гёкуро-фреш','Освежающий взрыв: элитный чай гёкуро, взбитая матча и свежая мята. Бодрящий и чистый вкус для истинных ценителей.', '350₽', '45 ккал']
+];
+const desserts = [
+  ['img/matcha-cheesecake.png','Матча-чизкейк','Классический японский чи-чизкейк на основе тофу и матчи. Воздушный, с лёгкой текстурой и чистым чайным вкусом.', '350₽', '180 ккал'],
+  ['img/ekler.png','Эклер «Зелёный всплеск»','Заварной эклер с хруст ящим чизом и насыщенным кремом из белого шоколада и матчи. Украшен глазурью цвета матчи.', '290₽', '240 ккал'],
+  ['img/cake-pop.png','Матча-кейк поп «Облачко»','Попкорн из воздушного риса, скреплённый белёзой матча-ганаша. Лёгкие шарики с хрустящей текстурой.', '220₽', '150 ккал'],
+  ['img/cookie-omikudzy.png','Печенье с предсказанием «Омикудзи»','Хрустящее печенье-«монетка» с матчей в тесте. Внутри — съедобная бумага с мудрой японской цитатой о чае.', '180₽', '120 ккал'],
+   ['img/ice-cream.png','Домашнее мороженое «Бамбуковый сад»','Веллатто на кокосовом молоке с сиропом из молодого бамбука и кусочками жевательного рисового мармелада моти.', '320₽', '210 ккал'],
+  ['img/tiramisyu.png','Тирамису «Лабубабл»','Авторская версия: савоярди пропитаны матча-сиропом, слои с сыром маскарпоне и кремом из юдзу.', '380₽', '280 ккал'],
+  ['img/merengi.png','Меренги «Сакура»','Воздушные безе с лёгким вкусом ванили и цветов сакуры, с розовым подтоном. Хрустящие снаружи и нежные внутри.', '250₽', '110 ккал'],
+  ['img/fondan.png','Фондан «Сердце матчи»','Тёплый шоколадно-матча-кейк с жидкой начинкой из ванильного крема. Подаётся с шариком матча-мороженого.', '390₽', '350 ккал']
+];
+const allItems = [...drinks, ...desserts];
+const selected = new Map(); // key -> { item, count }
+
+function getCalories(item) {
+  const match = item[4].match(/\d+/);
+  return match ? Number(match[0]) : 0;
+}
+
+function getKey(item) {
+  return item[1];
+}
+
+function renderCard(item) {
+  return `<div class="card">
+    <img src="${item[0]}" alt="${item[1]}" class="card-image">
+    <h3>${item[1]}</h3>
+    <p>${item[2]}</p>
+    <div class="card-bottom"><span>${item[3]}</span><span>${item[4]}</span></div>
+  </div>`;
+}
+
+function renderSelectedCard(entry) {
+  const { item, count } = entry;
+  const key = getKey(item);
+  return `<div class="card selected-card">
+    <div class="count-badge">${count}</div>
+    <button class="quantity-btn quantity-btn-plus" type="button" data-action="add" data-key="${key}">+</button>
+    <button class="remove-btn" type="button" data-action="remove" data-key="${key}">−</button>
+    <img src="${item[0]}" alt="${item[1]}" class="card-image">
+    <h3>${item[1]}</h3>
+    <p>${item[2]}</p>
+    <div class="card-bottom"><span>${item[3]}</span><span>${item[4]}</span></div>
+  </div>`;
+}
+
+function renderSliderItem(item, index) {
+  return `<div class="slider-item">
+    <div class="slider-thumb-wrap">
+      <img src="${item[0]}" alt="${item[1]}" class="slider-thumb">
+      <button class="add-btn" type="button" data-index="${index}">+</button>
+    </div>
+    <div class="slider-title">${item[1]}</div>
+  </div>`;
+}
+
+function updateSummary() {
+  let total = 0;
+  selected.forEach(({ item, count }) => {
+    total += getCalories(item) * count;
+  });
+  document.getElementById('total-calories').textContent = total;
+}
+
+function renderSelected() {
+  const grid = document.getElementById('selected-grid');
+
+  grid.innerHTML = Array.from(selected.values())
+    .map(renderSelectedCard)
+    .join('');
+
+  updateSummary();
+}
+const dailyModal = document.getElementById('dailyModal');
+const dailySettingsBtn = document.getElementById('dailySettingsBtn');
+const modalCloseBtn = document.getElementById('modalCloseBtn');
+const applyDailyBtn = document.getElementById('applyDailyBtn');
+const dailyCalories = document.getElementById('daily-calories');
+
+function calculateDailyNorm(gender, age) {
+  age = Number(age);
+
+  if (!age || age < 1) return null;
+
+  if (gender === 'male') {
+    if (age < 18) return 2800;
+    if (age < 31) return 2500;
+    if (age < 61) return 2400;
+
+    return 2200;
+  } else {
+    if (age < 18) return 2200;
+    if (age < 31) return 2000;
+    if (age < 61) return 1900;
+
+    return 1800;
+  }
+}
+
+dailySettingsBtn.addEventListener('click', () => {
+  dailyModal.classList.add('is-open');
+});
+
+modalCloseBtn.addEventListener('click', () => {
+  dailyModal.classList.remove('is-open');
+});
+
+dailyModal.addEventListener('click', (e) => {
+  if (e.target === dailyModal) {
+    dailyModal.classList.remove('is-open');
+  }
+});
+
+applyDailyBtn.addEventListener('click', () => {
+  const norm = calculateDailyNorm(
+    document.getElementById('genderSelect').value,
+    document.getElementById('ageInput').value
+  );
+
+  dailyCalories.textContent = norm ? norm : '—';
+  dailyModal.classList.remove('is-open');
+});
+
+document.getElementById('clearAllBtn').addEventListener('click', () => {
+  selected.clear();
+  renderSelected();
+  updateSummary();
+});
+
+document.querySelector('#drinks').innerHTML = drinks.map(renderCard).join('');
+document.querySelector('#desserts .menu-grid').innerHTML = desserts.map(renderCard).join('');
+
+const slider = document.getElementById('calorie-slider');
+slider.innerHTML = allItems.map(renderSliderItem).join('');
+
+slider.addEventListener('click', (e) => {
+  const btn = e.target.closest('.add-btn');
+  if (!btn) return;
+  const item = allItems[Number(btn.dataset.index)];
+  const key = getKey(item);
+
+  if (selected.has(key)) {
+    selected.get(key).count += 1;
+  } else {
+    selected.set(key, { item, count: 1 });
+  }
+
+  renderSelected();
+});
+
+document.getElementById('selected-grid').addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-action]');
+  if (!btn) return;
+
+  const key = btn.dataset.key;
+  const entry = selected.get(key);
+  if (!entry) return;
+
+  if (btn.dataset.action === 'add') {
+    entry.count += 1;
+  } else if (btn.dataset.action === 'remove') {
+    entry.count -= 1;
+    if (entry.count <= 0) {
+      selected.delete(key);
+    }
+  }
+
+  renderSelected();
+});
+
+document.querySelector('.slider-nav.prev').addEventListener('click', () => {
+  slider.scrollBy({ left: -320, behavior: 'smooth' });
+});
+document.querySelector('.slider-nav.next').addEventListener('click', () => {
+  slider.scrollBy({ left: 320, behavior: 'smooth' });
+});
+
+document.getElementById('scrollTopBtn').addEventListener('click', () =>
+  window.scrollTo({top:0, behavior:'smooth'})
+);
+
+document.getElementById('clearAllBtn').addEventListener('click', () => {
+  selected.clear();
+  renderSelected();
+});
+
+updateSummary();
+</script>
+
+
+
+<button class="scroll-top-btn" id="scrollTopBtn">
+  <img src="img/up.svg" alt="Наверх" class="scroll-default">
+  <img src="img/uphover.svg" alt="Наверх" class="scroll-hover">
+</button>
+
+
+<script>
+  // Ждём полной загрузки страницы
+  document.addEventListener('DOMContentLoaded', function() {
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    
+    // Проверяем, что кнопка существует
+    if (scrollTopBtn) {
+      console.log('Кнопка найдена');
+      
+      // Функция проверки прокрутки
+      function checkScroll() {
+        if (window.scrollY > 300) {
+          scrollTopBtn.classList.add('visible');
+          console.log('Кнопка видна, прокрутка:', window.scrollY);
+        } else {
+          scrollTopBtn.classList.remove('visible');
+          console.log('Кнопка скрыта, прокрутка:', window.scrollY);
+        }
+      }
+      
+      // Проверяем при прокрутке
+      window.addEventListener('scroll', checkScroll);
+      
+      // Проверяем сразу при загрузке
+      checkScroll();
+      
+      // Обработчик клика
+      scrollTopBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    } else {
+      console.error('Кнопка с id="scrollTopBtn" не найдена!');
+    }
+  });
+</script>
+
+
+
+
+</body>
+
+
+</html>

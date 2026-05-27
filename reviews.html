@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LABUBABLE MATCHA</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo">
+  <a href="index.html">
+    <img src="img/logo.png" alt="LABUBABLE MATCHA">
+  </a>
+</div>
+  <nav>
+    <a href="index.html#contacts">контакты</a>
+    <a href="index.html#about">о нас</a>
+    <a href="reviews.html">отзывы</a>
+    <a href="menu.html">меню</a>
+  </nav>
+<div class="header-placeholder">
+  <a href="#" class="icon-btn" id="instagram-btn">
+    <img src="img/iconinst.svg" alt="Instagram" class="icon-default">
+    <img src="img/iconinsthover.svg" alt="Instagram" class="icon-hover">
+  </a>
+  <a href="#" class="icon-btn" id="telegram-btn">
+    <img src="img/icontg.svg" alt="Telegram" class="icon-default">
+    <img src="img/icontghover.svg" alt="Telegram" class="icon-hover">
+  </a>
+</div>
+</header>
+
+<section class="reviews">
+  <div class="reviews-header">
+    <img src="img/reviews.svg" alt="reviews" class="about-icon">
+    <h1>отзывы</h1>
+  </div>
+  
+  <div class="reviews-content">
+    <img src="img/elizaveta.png" alt="кавычки" class="reviews-icon">
+    <div class="reviews-text">
+      <p class="author">Елизавета</p>
+      <blockquote>
+        «Каждое посещение — готовый контент. Напитки здесь не только вкусные, но и безупречно фотогеничные, особенно «Облако ёдзи» с зефиром. «Сакура-бубль» с тапиокой — редкая для города находка, о которой обязательно стоит рассказать подписчикам».
+      </blockquote>
+      
+    </div>
+  </div>
+
+    <div class="reviews-content">
+    <img src="img/oleg.png" alt="кавычки" class="reviews-icon">
+    <div class="reviews-text">
+      <p class="author">Олег</p>
+      <blockquote>
+        «Нашёл золотую середину: цены адекватные, а Wi-Fi быстрый. Классический латте с матчей и вафля — мой топовый набор для конспектов. Здесь не шумно и можно спокойно подготовиться к паре».
+      </blockquote>
+      
+    </div>
+  </div>
+
+    <div class="reviews-content">
+    <img src="img/viktor.png" alt="кавычки" class="reviews-icon">
+    <div class="reviews-text">
+      <p class="author">Виктор</p>
+      <blockquote>
+        «Это моя тихая зона для кода. «Мятный гёкуро-фреш» даёт чистую концентрацию без кофеиновой дрожи. Беру ноутбук, сажусь в угол — и на пару часов забываю, что за окном мегаполис».
+      </blockquote>
+      
+    </div>
+  </div>
+
+    <div class="reviews-content">
+    <img src="img/quote-icon.png" alt="кавычки" class="reviews-icon">
+    <div class="reviews-text">
+      <p class="author">Татьяна и Николай</p>
+      <blockquote>
+        «Любим заходить сюда на свидание. Уютная атмосфера и необычные напитки вроде «Сакура-бубль» создают ощущение маленького путешествия. Всегда берем два разных, чтобы попробовать друг у друга — пока ни разу не разочаровались».
+      </blockquote>
+      
+    </div>
+  </div>
+
+</section>
+
+<section class="contacts">
+  <div class="contact-info">
+    <h2>контакты</h2>
+    <div> +7 (812) 309-20-30</div>
+    <div> <a href="mailto:hello@labubable-matcha.ru">hello@labubable-matcha.ru</a></div>
+  </div>
+
+  <div class="contact-info">
+    <h2>адрес</h2>
+    <div>Санкт-Петербург,</div>
+    <div>Набережная реки Фонтанки, 77</div>
+  </div>
+
+ 
+</section>
+
+<footer class="footer">
+  © LABUBABLE MATCHA, 2025
+</footer>
+
+<button class="scroll-top-btn" id="scrollTopBtn">
+  <img src="img/up.svg" alt="Наверх" class="scroll-default">
+  <img src="img/uphover.svg" alt="Наверх" class="scroll-hover">
+</button>
+
+
+<script>
+  // Ждём полной загрузки страницы
+  document.addEventListener('DOMContentLoaded', function() {
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    
+    // Проверяем, что кнопка существует
+    if (scrollTopBtn) {
+      console.log('Кнопка найдена');
+      
+      // Функция проверки прокрутки
+      function checkScroll() {
+        if (window.scrollY > 300) {
+          scrollTopBtn.classList.add('visible');
+          console.log('Кнопка видна, прокрутка:', window.scrollY);
+        } else {
+          scrollTopBtn.classList.remove('visible');
+          console.log('Кнопка скрыта, прокрутка:', window.scrollY);
+        }
+      }
+      
+      // Проверяем при прокрутке
+      window.addEventListener('scroll', checkScroll);
+      
+      // Проверяем сразу при загрузке
+      checkScroll();
+      
+      // Обработчик клика
+      scrollTopBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    } else {
+      console.error('Кнопка с id="scrollTopBtn" не найдена!');
+    }
+  });
+</script>
+
+
+</body>
+</html>
