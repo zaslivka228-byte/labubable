@@ -743,8 +743,8 @@ h1 {
     height: 28px;
   }
 
-  .about-title {
-    font-size: 28px;
+  .about-title, .menu-header h1, .menu-section h2, #desserts h2, .reviews-header h1, .contact-info h2{
+    font-size: 28px !important;
   }
 
   .about-text p {

@@ -491,3 +491,9 @@
 body {
   overflow-x: hidden;
 }
+
+@media (max-width: 480px) {
+.calorie-slider-wrapper {
+    padding: 40px 30px 40px 25px;
+  }
+}
